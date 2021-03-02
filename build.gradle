@@ -40,7 +40,9 @@ plugins {
 subprojects {
     repositories {
         google()
-        jcenter()
+        maven {
+            url "https://kotlin.bintray.com/kotlinx"
+        }
     }
 
     apply plugin: 'com.diffplug.spotless'

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContent {
 
 
-            MyTheme( ) {
+            MyTheme( darkTheme = false) {
                 PetApp(mainVm)
             }
         }
