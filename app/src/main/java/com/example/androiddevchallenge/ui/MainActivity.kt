@@ -36,14 +36,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-
-            MyTheme( darkTheme = false) {
+            MyTheme(darkTheme = false) {
                 PetApp(mainVm)
             }
         }
     }
 }
-
 
 @Composable
 fun PetApp(mainVm: MainVm) {
@@ -57,7 +55,8 @@ fun PetApp(mainVm: MainVm) {
 
                 navigateToDetailsScreen = { pet ->
                     navController.navigate(Navigation.Details.title + "/${pet.id}")
-                })
+                }
+            )
         }
         composable(Navigation.Details.title + "/{id}") { backStackEntry ->
             val petId = backStackEntry.arguments?.getString("id")
@@ -69,5 +68,4 @@ fun PetApp(mainVm: MainVm) {
             )
         }
     }
-
 }

@@ -17,9 +17,8 @@ package com.example.androiddevchallenge.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.defaultMinSize
-
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -56,8 +55,5 @@ fun PetAttribute(title: String, property: String) {
             style = TextStyle(color = Color.Black, fontSize = 14.sp, fontWeight = FontWeight.Bold)
         )
         Spacer(modifier = Modifier.height(10.dp))
-
     }
-
-
 }

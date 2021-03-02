@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2021 The Android Open Source Project
  *
@@ -18,6 +17,4 @@ package com.example.androiddevchallenge
 
 import android.app.Application
 
-class BaseApplication : Application() {
-
-}
+class BaseApplication : Application()

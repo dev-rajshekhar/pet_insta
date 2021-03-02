@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.androiddevchallenge.viewmodel
 
 import androidx.compose.runtime.MutableState
@@ -30,16 +29,14 @@ class MainVm() : ViewModel() {
     val petList: MutableState<List<PetModel>> = mutableStateOf(listOf())
     val selectedValueCategory: MutableState<AnimalCategory?> = mutableStateOf(AnimalCategory.DOG)
 
-
     init {
         loadData()
     }
 
-     fun loadData() {
+    fun loadData() {
         viewModelScope.launch {
             val result = FakePuppies
             petList.value = result.filter { item -> item.animalType.equals("Dog", ignoreCase = true) }
-
         }
     }
 
@@ -47,16 +44,12 @@ class MainVm() : ViewModel() {
         val newCategory = getAnimalCategory(category)
         selectedValueCategory.value = newCategory
         onValueChange(category)
-
     }
 
     fun onValueChange(category: String) {
         viewModelScope.launch {
             val result = FakePuppies
             petList.value = result.filter { item -> item.animalType.equals(category, ignoreCase = true) }
-
-
         }
     }
-
 }

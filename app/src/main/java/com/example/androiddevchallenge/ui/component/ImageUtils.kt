@@ -15,7 +15,6 @@
  */
 package com.example.androiddevchallenge.ui.component
 
-
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
@@ -33,28 +32,26 @@ fun LoadImageFromUrl(url: String, @DrawableRes defaultImage: Int): MutableState<
     Glide.with(LocalContext.current).asBitmap().load(defaultImage)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value =resource
+                bitmapState.value = resource
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
             }
         })
-    Glide.with(LocalContext.current).asBitmap().load(url )
+    Glide.with(LocalContext.current).asBitmap().load(url)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value =resource
+                bitmapState.value = resource
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
             }
         })
-    return  bitmapState
+    return bitmapState
 }
 
-
-
-//@Composable
-//fun loadImageFromDrawable( @DrawableRes defaultImage: Int): MutableState<Bitmap?> {
+// @Composable
+// fun loadImageFromDrawable( @DrawableRes defaultImage: Int): MutableState<Bitmap?> {
 //    val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
 //    Glide.with(LocalContext.current).asBitmap().load(defaultImage)
 //        .into(object : CustomTarget<Bitmap>() {
@@ -67,4 +64,4 @@ fun LoadImageFromUrl(url: String, @DrawableRes defaultImage: Int): MutableState<
 //        })
 //
 //    return  bitmapState
-//}
+// }

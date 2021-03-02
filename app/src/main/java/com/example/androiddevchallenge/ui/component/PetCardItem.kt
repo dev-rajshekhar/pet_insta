@@ -19,6 +19,16 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -36,17 +46,6 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.PetModel
 import com.example.androiddevchallenge.ui.theme.GreyBorder
 import com.example.androiddevchallenge.ui.theme.heartLikeColor
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.width
-
 
 @Composable
 fun PetCardItem(petInfo: PetModel, navigateToDetailsScreen: (PetModel) -> Unit) {
@@ -81,7 +80,6 @@ fun PetCardItem(petInfo: PetModel, navigateToDetailsScreen: (PetModel) -> Unit) 
                         contentDescription = ""
                     )
                 }
-
             }
 
             Box(
@@ -90,31 +88,30 @@ fun PetCardItem(petInfo: PetModel, navigateToDetailsScreen: (PetModel) -> Unit) 
                     .height(110.dp)
                     .padding(10.dp)
             ) {
-                Column(
-                ) {
+                Column() {
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
-                    )
-                    {
+                    ) {
                         Text(
                             petInfo.name,
                             style = MaterialTheme.typography.h2.copy(color = MaterialTheme.colors.onPrimary)
                         )
 
-                        IconButton(onClick = {}, modifier = Modifier
-                            .height(24.dp)
-                            .width(24.dp)) {
+                        IconButton(
+                            onClick = {},
+                            modifier = Modifier
+                                .height(24.dp)
+                                .width(24.dp)
+                        ) {
                             Icon(
                                 painter = painterResource(id = heartIcon),
                                 contentDescription = "",
                                 tint = heartLikeColor
                             )
                         }
-
-
                     }
                     Spacer(modifier = Modifier.size(8.dp))
                     Text(
@@ -126,11 +123,10 @@ fun PetCardItem(petInfo: PetModel, navigateToDetailsScreen: (PetModel) -> Unit) 
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Start
-                    )
-                    {
+                    ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_location),
-                            tint=MaterialTheme.colors.onPrimary,
+                            tint = MaterialTheme.colors.onPrimary,
                             contentDescription = "",
                             modifier = Modifier
                                 .height(24.dp)
@@ -140,14 +136,9 @@ fun PetCardItem(petInfo: PetModel, navigateToDetailsScreen: (PetModel) -> Unit) 
                             petInfo.location,
                             style = MaterialTheme.typography.subtitle2.copy(color = MaterialTheme.colors.onPrimary),
                         )
-
-
                     }
                 }
-
             }
-
-
         }
     }
 }

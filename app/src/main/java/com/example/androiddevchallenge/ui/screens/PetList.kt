@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.androiddevchallenge.ui.screens
 
 import android.graphics.Bitmap
@@ -22,52 +21,50 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.AnimalCategory
 import com.example.androiddevchallenge.data.PetModel
 import com.example.androiddevchallenge.data.getAllAnimalCategory
 import com.example.androiddevchallenge.data.getAllAnimalIcon
 import com.example.androiddevchallenge.ui.component.PetCardItem
-
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.Icon
-import androidx.compose.material.Surface
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.Arrangement
-
+// import androidx.compose.runtime.*
 
 @Composable
 fun PetList(
@@ -90,11 +87,10 @@ fun PetList(
                 items(petList.size) { index ->
                     PetCardItem(petInfo = petList[index], navigateToDetailsScreen)
                 }
-            })
-
+            }
+        )
     }
 }
-
 
 @Composable
 fun CustomHeader() {
@@ -115,7 +111,7 @@ fun CustomHeader() {
                     .size(46.dp)
                     .padding(10.dp),
                 painter = painterResource(id = R.drawable.ic_menu),
-                tint=MaterialTheme.colors.onPrimary,
+                tint = MaterialTheme.colors.onPrimary,
                 contentDescription = ""
             )
             Image(
@@ -127,7 +123,6 @@ fun CustomHeader() {
                     .size(30.dp)
                     .border(1.dp, Color.Gray, CircleShape)
             )
-
         }
 
         Text(text = "Hello, Samantha", style = MaterialTheme.typography.h3.copy(color = MaterialTheme.colors.onPrimary))
@@ -138,17 +133,14 @@ fun CustomHeader() {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color =  Color(0xFFF5F5F5),
+                    color = Color(0xFFF5F5F5),
                     shape = CircleShape
                 )
                 .height(50.dp),
 
-            )
+        )
         Spacer(modifier = Modifier.height(10.dp))
-
     }
-
-
 }
 
 @Composable
@@ -167,7 +159,7 @@ fun PetFilter(
                     onSelectedCategoryChange = {
                         onSelectedChanged(it)
                     },
-                    icon= getAllAnimalIcon()[index]
+                    icon = getAllAnimalIcon()[index]
                 )
             }
         },
@@ -176,8 +168,7 @@ fun PetFilter(
 
             .padding(start = 10.dp, end = 10.dp),
 
-
-        )
+    )
 }
 
 @Composable
@@ -189,8 +180,7 @@ fun PetCard(
 ) {
     Surface(
         modifier = Modifier
-            .padding(end = 10.dp).height(40.dp).border(1.dp ,color = if(isSelected) MaterialTheme.colors.onPrimary else MaterialTheme.colors.onSecondary, shape = RoundedCornerShape(2.dp))
-           ,
+            .padding(end = 10.dp).height(40.dp).border(1.dp, color = if (isSelected) MaterialTheme.colors.onPrimary else MaterialTheme.colors.onSecondary, shape = RoundedCornerShape(2.dp)),
         elevation = 3.dp,
         shape = MaterialTheme.shapes.medium,
         color = if (isSelected) Color.Black else MaterialTheme.colors.surface
@@ -198,17 +188,19 @@ fun PetCard(
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.toggleable(value = isSelected, onValueChange = {
-                onSelectedCategoryChange(animalType.value)
-
-
-            })
+            modifier = Modifier.toggleable(
+                value = isSelected,
+                onValueChange = {
+                    onSelectedCategoryChange(animalType.value)
+                }
+            )
         ) {
             val image = loadImageFromDrawable(defaultImage = icon).value
             image?.let {
-                Icon( modifier = Modifier.size(30.dp).padding(end=5.dp,start = 8.dp),
-                    tint=if (isSelected) Color.White else Color(0xFF666666),
-                   bitmap = it.asImageBitmap(),contentDescription = ""
+                Icon(
+                    modifier = Modifier.size(30.dp).padding(end = 5.dp, start = 8.dp),
+                    tint = if (isSelected) Color.White else Color(0xFF666666),
+                    bitmap = it.asImageBitmap(), contentDescription = ""
                 )
             }
             Text(
@@ -217,9 +209,7 @@ fun PetCard(
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.button.copy(color = if (isSelected) Color.White else Color(0xFF666666)),
             )
-
         }
-
     }
 }
 
@@ -227,7 +217,7 @@ fun PetCard(
 private fun CustomTextField(
     modifier: Modifier = Modifier,
 ) {
-    var name by remember { mutableStateOf("Search Your Friend") }
+//    var name by remember { mutableStateOf("Search Your Friend") }
 
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
 
@@ -243,12 +233,11 @@ private fun CustomTextField(
             },
             enabled = false,
 
-
             modifier = Modifier.background(color = Color.Transparent),
-            value = name,
+            value = "Search Your Friend",
             placeholder = { Text(text = "Search Here", textAlign = TextAlign.Start) },
 
-            onValueChange = { name = it },
+            onValueChange = { },
             colors = TextFieldDefaults.textFieldColors(
                 focusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
@@ -256,27 +245,22 @@ private fun CustomTextField(
                 backgroundColor = Color.Transparent,
             )
 
-
         )
-
-
     }
 }
 
-
 @Composable
-fun loadImageFromDrawable( @DrawableRes defaultImage: Int): MutableState<Bitmap?> {
+fun loadImageFromDrawable(@DrawableRes defaultImage: Int): MutableState<Bitmap?> {
     val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
     Glide.with(LocalContext.current).asBitmap().load(defaultImage)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value =resource
+                bitmapState.value = resource
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
             }
         })
 
-    return  bitmapState
+    return bitmapState
 }
-

@@ -31,4 +31,3 @@ val Orange400 = Color(0xFFFF5F57)
 val GreyBorder = Color(0xFFE2E2E2)
 val GreyText = Color(0xFF666666)
 val GreenColor = Color(0xFF3F9342)
-

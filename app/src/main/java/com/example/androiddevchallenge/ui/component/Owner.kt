@@ -18,6 +18,13 @@ package com.example.androiddevchallenge.ui.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -32,18 +39,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.PetModel
 import com.example.androiddevchallenge.ui.theme.ownerInfoColor
-import com.example.androiddevchallenge.R
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-
-
 
 @Composable
 fun OwnerInfo(pet: PetModel) {
@@ -72,16 +70,14 @@ fun OwnerInfo(pet: PetModel) {
                 Column(
                     modifier = Modifier.padding(5.dp)
                 ) {
-                    Text(text = pet.owner,style = TextStyle(fontSize = 16.sp, color = MaterialTheme.colors.onSurface))
+                    Text(text = pet.owner, style = TextStyle(fontSize = 16.sp, color = MaterialTheme.colors.onSurface))
                     Spacer(modifier = Modifier.height(3.dp))
-                    Text(text = "Owner",style = TextStyle(fontSize = 14.sp, color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.Bold))
+                    Text(text = "Owner", style = TextStyle(fontSize = 14.sp, color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.Bold))
                     Spacer(modifier = Modifier.height(3.dp))
 
-                    Text(text = pet.location,style = TextStyle(fontSize = 12.sp, color = MaterialTheme.colors.onSurface,fontWeight = FontWeight.Light))
+                    Text(text = pet.location, style = TextStyle(fontSize = 12.sp, color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.Light))
                 }
             }
-
         }
     }
-
 }
