@@ -18,7 +18,6 @@ package com.example.androiddevchallenge.ui.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -36,6 +35,14 @@ import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.data.PetModel
 import com.example.androiddevchallenge.ui.theme.ownerInfoColor
 import com.example.androiddevchallenge.R
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+
 
 
 @Composable
