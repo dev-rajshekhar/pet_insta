@@ -25,7 +25,7 @@ import com.example.androiddevchallenge.data.PetModel
 import com.example.androiddevchallenge.data.getAnimalCategory
 import kotlinx.coroutines.launch
 
-class MainVm() : ViewModel() {
+class MainVm : ViewModel() {
     val petList: MutableState<List<PetModel>> = mutableStateOf(listOf())
     val selectedValueCategory: MutableState<AnimalCategory?> = mutableStateOf(AnimalCategory.DOG)
 
@@ -33,7 +33,7 @@ class MainVm() : ViewModel() {
         loadData()
     }
 
-    fun loadData() {
+    private fun loadData() {
         viewModelScope.launch {
             val result = FakePuppies
             petList.value = result.filter { item -> item.animalType.equals("Dog", ignoreCase = true) }
@@ -46,7 +46,7 @@ class MainVm() : ViewModel() {
         onValueChange(category)
     }
 
-    fun onValueChange(category: String) {
+    private fun onValueChange(category: String) {
         viewModelScope.launch {
             val result = FakePuppies
             petList.value = result.filter { item -> item.animalType.equals(category, ignoreCase = true) }

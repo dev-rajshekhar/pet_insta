@@ -49,9 +49,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.PetModel
-import com.example.androiddevchallenge.ui.component.LoadImageFromUrl
 import com.example.androiddevchallenge.ui.component.OwnerInfo
 import com.example.androiddevchallenge.ui.component.PetAttribute
+import com.example.androiddevchallenge.ui.component.loadImageFromUrl
 import com.example.androiddevchallenge.ui.theme.GreenColor
 import com.example.androiddevchallenge.ui.theme.heartLikeColor
 
@@ -118,7 +118,7 @@ fun PetDetails(pet: PetModel, navigateBack: () -> Unit) {
                         .align(alignment = Alignment.CenterHorizontally)
                 ) {
                     pet.picture.let {
-                        val image = LoadImageFromUrl(url = it, defaultImage = R.drawable.ic_pet).value
+                        val image = loadImageFromUrl(url = it, defaultImage = R.drawable.ic_pet).value
 
                         image?.let {
                             Image(

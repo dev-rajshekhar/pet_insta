@@ -15,9 +15,6 @@
  */
 package com.example.androiddevchallenge.ui.screens
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -44,26 +41,22 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.AnimalCategory
 import com.example.androiddevchallenge.data.PetModel
 import com.example.androiddevchallenge.data.getAllAnimalCategory
 import com.example.androiddevchallenge.data.getAllAnimalIcon
 import com.example.androiddevchallenge.ui.component.PetCardItem
+import com.example.androiddevchallenge.ui.component.loadImageFromDrawable
+
 // import androidx.compose.runtime.*
 
 @Composable
@@ -247,20 +240,4 @@ private fun CustomTextField(
 
         )
     }
-}
-
-@Composable
-fun loadImageFromDrawable(@DrawableRes defaultImage: Int): MutableState<Bitmap?> {
-    val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
-    Glide.with(LocalContext.current).asBitmap().load(defaultImage)
-        .into(object : CustomTarget<Bitmap>() {
-            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value = resource
-            }
-
-            override fun onLoadCleared(placeholder: Drawable?) {
-            }
-        })
-
-    return bitmapState
 }

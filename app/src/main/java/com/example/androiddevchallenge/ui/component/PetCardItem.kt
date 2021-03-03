@@ -67,15 +67,15 @@ fun PetCardItem(petInfo: PetModel, navigateToDetailsScreen: (PetModel) -> Unit) 
         ) {
 
             petInfo.picture.let {
-                val image = LoadImageFromUrl(url = it, defaultImage = R.drawable.ic_pet).value
-                image?.let {
+                val image = loadImageFromUrl(url = it, defaultImage = R.drawable.ic_pet).value
+                image?.let { bmp ->
                     Image(
                         modifier = Modifier
                             .width(110.dp)
                             .height(110.dp)
                             .clip(RoundedCornerShape(10.dp)),
                         alignment = Alignment.Center,
-                        bitmap = it.asImageBitmap(),
+                        bitmap = bmp.asImageBitmap(),
                         contentScale = ContentScale.Crop,
                         contentDescription = ""
                     )
@@ -88,7 +88,7 @@ fun PetCardItem(petInfo: PetModel, navigateToDetailsScreen: (PetModel) -> Unit) 
                     .height(110.dp)
                     .padding(10.dp)
             ) {
-                Column() {
+                Column {
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
